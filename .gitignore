@@ -27,3 +27,6 @@ Thumbs.db
 
 # models 
 model/*.pkl
+
+# data 
+data/*.csv
