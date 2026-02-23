@@ -1,5 +1,6 @@
 # Spark outputs
 checkpoints/
+output/
 
 # Python
 __pycache__/
