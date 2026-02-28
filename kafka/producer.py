@@ -11,7 +11,7 @@ def delivery_report(err, msg):
     if err:
         print("Delivery failed:", err)
     else:
-        print(f"✅ Delivered to {msg.topic()} partition {msg.partition()}")
+        print(f" Delivered to {msg.topic()} partition {msg.partition()}")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CSV_FILE = os.path.join(BASE_DIR, "..", "data", "creditcard.csv")
@@ -25,7 +25,7 @@ print(f"Fraud cases: {df['Class'].sum()}")
 
 for _, row in df.iterrows():
     event = row.to_dict()
-    event["Class"] = int(event["Class"])  # ✅ force int natif Python (pas float)
+    event["Class"] = int(event["Class"])  
     producer.produce(
         "credit_card_transactions",
         value=json.dumps(event).encode("utf-8"),
