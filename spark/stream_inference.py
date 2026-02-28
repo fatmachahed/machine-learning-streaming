@@ -50,15 +50,14 @@ if not os.path.exists(MODEL_PATH):
     train_model()
 
 # ─────────────────────────────────────────
-# Schema - tout en DoubleType ✅
-# Class sera 0.0 ou 1.0 (JSON encode les int en float)
+# Schema 
 # ─────────────────────────────────────────
 csv_path = os.path.join(BASE_DIR, "..", "data", "creditcard.csv")
 df_sample = pd.read_csv(csv_path, nrows=1)
 
 schema = StructType()
 for col_name in df_sample.columns:
-    schema = schema.add(col_name, DoubleType())  # ✅ tout en Double, plus de NaN
+    schema = schema.add(col_name, DoubleType()) 
 
 feature_cols = [c for c in df_sample.columns if c not in ["Time", "Class"]]
 print(f"Feature cols ({len(feature_cols)}): {feature_cols[:5]}...")
@@ -105,7 +104,7 @@ def process_batch(batch_df, batch_id):
     scaler = joblib.load(SCALER_PATH)
 
     pdf = batch_df.toPandas()
-    pdf["Class"] = pdf["Class"].astype("Int64")  # ✅ 0.0 → 0
+    pdf["Class"] = pdf["Class"].astype("Int64") 
 
     X = pdf[feature_cols]
     X_scaled = pd.DataFrame(scaler.transform(X), columns=feature_cols)
