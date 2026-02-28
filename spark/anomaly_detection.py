@@ -16,7 +16,7 @@ df_sample = pd.read_csv(csv_path, nrows=1)
 
 schema = StructType()
 for col_name in df_sample.columns:
-    schema = schema.add(col_name, DoubleType())  # ✅ tout en Double
+    schema = schema.add(col_name, DoubleType())  
 
 feature_cols = [c for c in df_sample.columns if c not in ["Time", "Class"]]
 
